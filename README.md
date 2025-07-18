@@ -4,7 +4,7 @@
 ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
 ![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-blue)
 
-This project is a functional prototype that converts natural language questions into SQL queries. It uses a pre-trained model from Hugging Face and exposes the functionality through a minimal REST API built with Flask. This was developed as a practical assignment for an AI Engineering Internship role.
+This project is a functional prototype that converts natural language questions into SQL queries. It uses a pre-trained model from Hugging Face and exposes the functionality through a minimal REST API built with Flask.
 
 ## Features
 * **Natural Language to SQL**: Translates plain English questions into executable SQL queries.
