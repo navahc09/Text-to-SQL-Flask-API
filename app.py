@@ -10,8 +10,10 @@ app = Flask(__name__)
 # validate_query()
 # execute_query()
 # summarize_result()
-# calculate_confidence_score()
 # process the query in json format from get_sql_from_english() function from english_to_sql script
+
+app.run(host="0.0.0.0", port=5000)
+
 @app.route('/query', methods=['POST'])
 def process_query():
 	data = request.get_json()
