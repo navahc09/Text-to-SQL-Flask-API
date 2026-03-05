@@ -4,9 +4,13 @@ import pandas as pd
 
 API_URL = "http://127.0.0.1:5000/query"
 
-st.set_page_config(page_title="AI SQL Assistant", layout="wide")
+st.set_page_config(page_title="Text-to-SQL Agent", page_icon="📊", layout="wide")
 
-st.title("AI SQL Assistant")
+st.title("Conversational Text-to-SQL Agent")
+st.markdown("""
+**An LLM-powered orchestration pipeline that translates natural language into secure, executable SQL queries, and returns the results with a summary.** Ask questions about the sample music store database (Chinook). The agent will generate the SQL, pass it through a strict read-only sanitization layer, execute it, and visualize the results.
+""")
+st.divider()
 
 # Schema
 schema = {
@@ -21,8 +25,15 @@ schema = {
 }
 
 # Session State
+# Session State
 if "messages" not in st.session_state:
-    st.session_state.messages = []
+    st.session_state.messages = [
+        {
+            "role": "assistant", 
+            "type": "text", 
+            "content": "**Welcome!** I am your Text-to-SQL agent. \n\nYou can ask me questions about tracks, artists, invoices, and customers. Try clicking one of the **Example Questions** in the sidebar to see how the multi-stage pipeline works!"
+        }
+    ]
 
 # Sidebar Schema Viewer
 st.sidebar.title("Database Schema")
@@ -33,16 +44,17 @@ for table, cols in schema.items():
             st.write(c)
 
 # Example Questions
-st.sidebar.markdown("### Example Questions")
+st.sidebar.markdown("---")
+st.sidebar.markdown("### Try an Example")
 
 examples = [
-    "How many albums are there in total?",
+    "Top 10 most expensive tracks",
+    "Which genres have the most tracks?",
     "How many songs does artist with id 1 have?",
-    "Which are the most expensive tracks?"
 ]
 
 for q in examples:
-    if st.sidebar.button(q):
+    if st.sidebar.button(q, width='stretch'):
         st.session_state.pending_question = q
 
 # Display Chat History
