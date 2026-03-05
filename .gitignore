@@ -20,6 +20,7 @@ ENV/
 .streamlit/secrets.toml
 # Logs
 *.log
+.idea
 logs/
 # Build / Packaging
 build/
