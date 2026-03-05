@@ -49,7 +49,7 @@ st.sidebar.markdown("### Try an Example")
 
 examples = [
     "Top 10 most expensive tracks",
-    "Which genres have the most tracks?",
+    "How many invoices are there in total?",
     "How many songs does artist with id 1 have?",
 ]
 
