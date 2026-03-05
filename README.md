@@ -1,8 +1,8 @@
-# 🤖 AI SQL Assistant — Natural Language to Database Queries
+# Conversational Text-to-SQL Agent
 
 Turn plain English questions into SQL queries and explore databases conversationally.
 
-This project is an **AI-powered data assistant** that allows users to interact with a relational database using natural language. It converts questions into SQL queries using an LLM, executes them safely, and returns results along with visualizations.
+This project is a multi-layered Generative AI pipeline enabling conversational database exploration, automated query validation, and dynamic data visualization.
 
 Instead of writing SQL manually, users can simply ask questions in english like:
 
@@ -12,17 +12,17 @@ and instantly receive answers.
 
 ---
 
-# 🚀 Features
+# Features
 
-### 💬 Conversational AI Interface
+### Conversational AI Interface
 
 A ChatGPT-style interface where users can ask database questions naturally.
 
-### 🧠 LLM-powered SQL Generation
+### LLM-powered SQL Generation
 
 Uses **Gemini Flash 3.1 Flash Lite** to translate natural language questions into SQL queries.
 
-### 🛡️ Query Safety Validation
+### Query Safety Validation
 
 A validation layer ensures:
 
@@ -30,21 +30,21 @@ A validation layer ensures:
 - No destructive operations (`DROP`, `DELETE`, etc.)
 - Tables referenced actually exist
 
-### 📊 Automatic Data Visualization
+### Automatic Data Visualization
 
 Query results automatically generate charts when possible.
 
-### 🗂️ Interactive Schema Explorer
+### Interactive Schema Explorer
 
 Users can explore the database schema directly from the sidebar.
 
-### ⚡ Fast API Backend
+### Fast API Backend
 
 A lightweight API serves the LLM pipeline and executes queries securely.
 
 ---
 
-# 🖥️ Demo
+# Demo
 
 Example interaction:
 
@@ -70,11 +70,11 @@ Result:
 
 Visualization:
 
-📊 Auto-generated bar chart of track prices.
+Auto-generated bar chart of track prices.
 
 ---
 
-# 🏗️ Architecture
+# Architecture
 
 ```
 User
@@ -96,7 +96,7 @@ The system ensures safe query generation while providing a smooth conversational
 
 ---
 
-# 🧰 Tech Stack
+# Tech Stack
 
 **Frontend**
 
@@ -123,7 +123,7 @@ The system ensures safe query generation while providing a smooth conversational
 
 ---
 
-# 📂 Project Structure
+# Project Structure
 
 ```
 text-to-sql-ai/
@@ -143,7 +143,7 @@ text-to-sql-ai/
 
 ---
 
-# ⚙️ Setup
+# Setup
 
 Clone the repository:
 
@@ -166,7 +166,7 @@ GEMINI_API_KEY=your_api_key_here
 
 ---
 
-# ▶️ Running the Project
+# Running the Project
 
 Start the backend:
 
@@ -188,7 +188,7 @@ http://localhost:8501
 
 ---
 
-# 🧪 Example Questions
+# Example Questions
 
 Try asking:
 
@@ -199,7 +199,7 @@ Try asking:
 
 ---
 
-# 🔐 SQL Safety Layer
+# Query Sanitization & Security Layer
 
 To prevent malicious queries, the system includes a validator that:
 
@@ -211,7 +211,7 @@ This ensures the AI assistant **cannot modify or damage the database**.
 
 ---
 
-# 💡 Why This Project Matters
+# Why This Project Matters
 
 Many companies struggle to give **non-technical users access to data**.
 
@@ -228,7 +228,7 @@ into a practical AI application.
 
 ---
 
-# 👨‍💻 Author
+# Author
 
 **Shubham**
 
@@ -238,6 +238,7 @@ Interested in building practical AI tools that simplify complex workflows.
 
 ---
 
-# ⭐ If you found this project interesting
+# If you found this project interesting
 
 Consider giving the repository a star!
+
