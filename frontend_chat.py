@@ -8,7 +8,8 @@ st.set_page_config(page_title="Text-to-SQL Agent", page_icon="📊", layout="wid
 
 st.title("Conversational Text-to-SQL Agent")
 st.markdown("""
-**An LLM-powered orchestration pipeline that translates natural language into secure, executable SQL queries, and returns the results with a summary.** Ask questions about the sample music store database (Chinook). The agent will generate the SQL, pass it through a strict read-only sanitization layer, execute it, and visualize the results.
+**An LLM-powered orchestration pipeline that translates natural language into secure, executable SQL queries, and returns the results with a summary.** Ask questions about the sample music store database (Chinook). The agent will generate the SQL, pass it through a strict read-only sanitization layer, execute it, and visualize the results. 
+(Note: Due to Render's policy, the chat may sometimes get stuck at "Generating SQL". If this occurs, refresh the page and type your question again.) 
 """)
 st.divider()
 
