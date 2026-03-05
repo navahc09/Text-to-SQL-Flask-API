@@ -1,24 +1,31 @@
 # using flask to create api endpoint '/query' to access the model from the outside
 from flask import Flask, request, jsonify
-from english_to_sql import get_sql_from_english
+from pipeline import text_to_sql_summary
 
 app = Flask(__name__)
 
+# we have five functions:
+# text_to_sql_summary()
+# generate_query()
+# validate_query()
+# execute_query()
+# summarize_result()
+# calculate_confidence_score()
 # process the query in json format from get_sql_from_english() function from english_to_sql script
 @app.route('/query', methods=['POST'])
 def process_query():
 	data = request.get_json()
-
+	
 	if not data or 'question' not in data:
-		return jsonify({"error": "Invalid input. 'question' is required"})
+		return jsonify({"error": "Invalid Input, 'question' is required"})
 
 	question = data['question']
-	result = get_sql_from_english(question)
+	summary = text_to_sql_summary(question)
 
-	if "error" in result:
-		return jsonify(result), 500
+	if "error" in summary:
+		return jsonify(summary), 500
 	else:
-		return jsonify(result)
+		return jsonify(summary)
 
 if __name__ == '__main__':
 	app.run(debug=True, port=5000)

@@ -1,0 +1,40 @@
+# Python
+**pycache**/
+*.py[cod]
+*$py.class
+*.so
+# Bytecode
+*.pyc
+*.pyo
+*.pyd
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv/
+.python-version
+# Environment Variables
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+# Logs
+*.log
+logs/
+# Build / Packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+# Cache / Test
+.cache/
+.pytest_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store

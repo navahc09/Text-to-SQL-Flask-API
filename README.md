@@ -1,82 +1,243 @@
-# Text-to-SQL Flask API
+# 🤖 AI SQL Assistant — Natural Language to Database Queries
 
-![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)
-![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
-![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-blue)
+Turn plain English questions into SQL queries and explore databases conversationally.
 
-This project is a functional prototype that converts natural language questions into SQL queries. It uses a pre-trained model from Hugging Face and exposes the functionality through a minimal REST API built with Flask.
+This project is an **AI-powered data assistant** that allows users to interact with a relational database using natural language. It converts questions into SQL queries using an LLM, executes them safely, and returns results along with visualizations.
 
-## Features
-* **Natural Language to SQL**: Translates plain English questions into executable SQL queries.
-* **Hugging Face Integration**: Leverages a pre-trained `transformers` model for the core translation task.
-* **Database Execution**: Connects to a local SQLite database (Chinook) to execute the generated queries.
-* **REST API**: Exposes a single `POST /query` endpoint to make the service available over the network.
+Instead of writing SQL manually, users can simply ask questions in english like:
 
-## Tech Stack
-* **Backend**: Python, Flask
-* **AI/ML**: Hugging Face Transformers, PyTorch
-* **Database**: SQLite
+> “What are the top 10 most expensive tracks?”
+
+and instantly receive answers.
 
 ---
 
-## Setup and Installation
+# 🚀 Features
 
-Follow these steps to get the project running locally.
+### 💬 Conversational AI Interface
 
-### 1. Prerequisites
-* Python 3.10 or higher
-* `pip` and `venv` for package management
+A ChatGPT-style interface where users can ask database questions naturally.
 
-### 2. Installation
-Clone the repository and set up the virtual environment.
+### 🧠 LLM-powered SQL Generation
 
-```bash
-# Clone the repository
-git clone [https://github.com/your-username/Text-to-SQL-Flask-API.git](https://github.com/your-username/Text-to-SQL-Flask-API.git)
-cd Text-to-SQL-Flask-API
+Uses **Gemini Flash 3.1 Flash Lite** to translate natural language questions into SQL queries.
 
-# Create and activate a virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
+### 🛡️ Query Safety Validation
 
-# Install the required dependencies
-pip install -r requirements.txt
+A validation layer ensures:
+
+- Only **SELECT queries** are allowed
+- No destructive operations (`DROP`, `DELETE`, etc.)
+- Tables referenced actually exist
+
+### 📊 Automatic Data Visualization
+
+Query results automatically generate charts when possible.
+
+### 🗂️ Interactive Schema Explorer
+
+Users can explore the database schema directly from the sidebar.
+
+### ⚡ Fast API Backend
+
+A lightweight API serves the LLM pipeline and executes queries securely.
+
+---
+
+# 🖥️ Demo
+
+Example interaction:
+
+User asks:
+
+> "Top 10 most expensive tracks"
+
+AI generates SQL:
+
+```sql
+SELECT Name, UnitPrice
+FROM Track
+ORDER BY UnitPrice DESC
+LIMIT 10
+```
+
+Result:
+
+| Name    | UnitPrice |
+| ------- | --------- |
+| Track A | 1.99      |
+| Track B | 1.99      |
+
+Visualization:
+
+📊 Auto-generated bar chart of track prices.
+
+---
+
+# 🏗️ Architecture
+
+```
+User
+ ↓
+Streamlit Chat UI
+ ↓
+LLM SQL Generation (Gemini)
+ ↓
+SQL Validation Layer
+ ↓
+SQLite Database (Chinook)
+ ↓
+LLM Summary Generation (Gemini)
+ ↓
+Results + Charts
+```
+
+The system ensures safe query generation while providing a smooth conversational interface.
+
+---
+
+# 🧰 Tech Stack
+
+**Frontend**
+
+- Streamlit
+
+**Backend**
+
+- FastAPI / Flask
+
+**LLM**
+
+- Google Gemini Flash
+
+**Database**
+
+- SQLite (Chinook sample database)
+
+**Libraries**
+
+- pandas
+- requests
+- python-dotenv
+- regex
+
+---
+
+# 📂 Project Structure
+
+```
+text-to-sql-ai/
+│
+├── frontend_chat.py        # Streamlit conversational UI
+├── app.py                  # API server
+│
+├── pipeline.py             # LLM + SQL pipeline
+├── llm_utils.py            # Gemini interaction
+├── non_llm_utils.py        # SQL execution & validation
+│
+├── Chinook_Sqlite.sqlite   # Sample database
+│
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
-## Usage
+# ⚙️ Setup
 
-The project can be run as a web server. Make sure you are in the project's root directory with the virtual environment activated.
+Clone the repository:
 
-### 1. Run the API Server
-Start the Flask application by running `app.py`:
+```bash
+git clone https://github.com/yourusername/ai-sql-assistant.git
+cd ai-sql-assistant
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Create `.env` file:
+
+```
+GEMINI_API_KEY=your_api_key_here
+```
+
+---
+
+# ▶️ Running the Project
+
+Start the backend:
 
 ```bash
 python app.py
 ```
-The server will start, load the model into memory, and will be available at `http://127.0.0.1:5000`.
 
-### 2. Test the Endpoint
-You can test the live API endpoint using the provided `test_api.py` (by simply clicking the 'run' button) script or a cURL command.
+Run the frontend:
 
-**Using the Python Test Script:**
 ```bash
-python test_api.py
+streamlit run frontend_chat.py
 ```
 
-**Using cURL:**
-```bash
-curl -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"question": "How many albums are there for the artist Aerosmith?"}' \
-  [http://127.0.0.1:5000/query]
+Open the app:
+
 ```
-A successful response will be a JSON object containing the generated SQL and the results from the database.
+http://localhost:8501
+```
 
 ---
 
-## Alternative: Google Colab
-For a cloud-based demonstration without a local setup, you can use the provided Google Colab notebook.
+# 🧪 Example Questions
 
-[**Link to Google Colab Notebook**](https://colab.research.google.com/drive/1l3dYjwANz42MGJVvpzhexZ3PirHo_Qor?usp=sharing)
+Try asking:
+
+- List all artists
+- Top 10 most expensive tracks
+- Which genres have the most tracks?
+- Which albums contain the most songs?
+
+---
+
+# 🔐 SQL Safety Layer
+
+To prevent malicious queries, the system includes a validator that:
+
+- restricts queries to `SELECT`
+- blocks destructive operations
+- checks referenced tables
+
+This ensures the AI assistant **cannot modify or damage the database**.
+
+---
+
+# 💡 Why This Project Matters
+
+Many companies struggle to give **non-technical users access to data**.
+
+This project demonstrates how **Generative AI can bridge that gap**, allowing anyone to explore databases using natural language.
+
+It combines:
+
+- LLMs
+- backend APIs
+- database systems
+- data visualization
+
+into a practical AI application.
+
+---
+
+# 👨‍💻 Author
+
+**Shubham**
+
+IT Student | AI & Backend Systems Enthusiast
+
+Interested in building practical AI tools that simplify complex workflows.
+
+---
+
+# ⭐ If you found this project interesting
+
+Consider giving the repository a star!
