@@ -1,5 +1,7 @@
 # Conversational Text-to-SQL Agent
 
+(Deployed link: https://conversational-text-to-sql-agent.streamlit.app)
+
 Turn plain English questions into SQL queries and explore databases conversationally.
 
 This project is a multi-layered Generative AI pipeline enabling conversational database exploration, automated query validation, and dynamic data visualization.
@@ -241,4 +243,5 @@ Interested in building practical AI tools that simplify complex workflows.
 # If you found this project interesting
 
 Consider giving the repository a star!
+
 
